@@ -32,7 +32,8 @@ body {
   display: flex;
   flex-direction: column;
   place-items: center;
-  margin-top: 2rem;
+  margin: 2rem;
+  margin-bottom: 4rem;
   min-height: 90vh;
   /* justify-content: center;
   align-items: center; */
@@ -85,7 +86,8 @@ body {
 }
 
 .txt-muted {
-  color: var(--password-txt-color);
+  /* color: var(--password-txt-color); */
+  color: blue;
 }
 
 .modal {
@@ -111,4 +113,12 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(3px);
   z-index: 4;
+}
+
+.reda {
+  color: "red";
+}
+
+.green {
+  color: "green";
 }

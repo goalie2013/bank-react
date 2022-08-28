@@ -7,7 +7,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 // ** If using callback function from onChange, use ref
-// OR can change state by calling function in onChange and setting state there (NOT WORKING??)
+// OR can change state by calling function in onChange and setting state there
+// TODO:(NOT WORKING?? LOOK AT CREATE ACCOUNT)
+
+//TODO: Media query for Modal
 
 export default function DepositNew() {
   const [show, setShow] = useState(true);
