@@ -1,13 +1,15 @@
 import React from "react";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 
 export default function Footer() {
   return (
     <div className="footer">
-      <h5>Bad Bank Inc</h5>
-      <h5>Bad Bank Inc</h5>
-      <h5>Bad Bank Inc</h5>
-      <h5>Bad Bank Inc</h5>
-      <h5>Bad Bank Inc</h5>
+      <Navbar>
+        <Container>
+          <Navbar.Brand href="#home">Brand link</Navbar.Brand>
+        </Container>
+      </Navbar>
     </div>
   );
 }

@@ -1,4 +1,11 @@
-export default function handleChange(e, setValue, setStatus, setShow, ref) {
+export default function handleChange(
+  e,
+  setValue,
+  setStatus,
+  setShow,
+  setTextColor,
+  ref
+) {
   console.log("-- handleChange --");
   setValue(e.target.value);
   const target = e.target;
@@ -9,11 +16,13 @@ export default function handleChange(e, setValue, setStatus, setShow, ref) {
   console.log(typeof target.value);
 
   if (isNaN(target.value)) {
+    setTextColor("red");
     setStatus(`${name} field can only be number`);
     setShow(true);
     return false;
   }
   if (!target.value) {
+    setTextColor("red");
     setStatus(`${name} field cannot be empty`);
     setShow(true);
     return false;
@@ -21,6 +30,7 @@ export default function handleChange(e, setValue, setStatus, setShow, ref) {
 
   if (parseInt(target.value) < 0) {
     console.log("NEGATIVE");
+    setTextColor("red");
     setStatus(`${name} field cannot be negative`);
     setShow(true);
     return false;

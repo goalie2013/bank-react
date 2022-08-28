@@ -5,11 +5,13 @@ import SubmitBtn from "../components/SubmitBtn";
 import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
 import handleChange from "../helper";
+import dayjs from "dayjs";
 
 export default function Withdraw() {
   const [show, setShow] = useState(true);
   const [status, setStatus] = useState("");
   const [withdrawValue, setWithdrawValue] = useState("");
+  const [textColor, setTextColor] = useState("");
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
   const ref = useRef(null);
@@ -30,9 +32,13 @@ export default function Withdraw() {
     currentUser.balance -= withdrawValue;
     currentUser.transactions = [
       ...currentUser.transactions,
-      `Withdraw $${withdrawValue}`,
+      {
+        info: `Withdraw $${withdrawValue}`,
+        timeStamp: dayjs().format("MM/DD/YYYY HH:mm:ss"),
+      },
     ];
 
+    setTextColor("green");
     setStatus("Withdraw Complete!");
     setShow(true);
     setWithdrawValue("");
@@ -44,7 +50,8 @@ export default function Withdraw() {
       <CustomCard
         bgcolor="light"
         header="Withdraw From Account"
-        status={status}
+        statusText={status}
+        statusColor={textColor}
         body={
           <Form className="create-acc-form">
             <Form.Group className="mb-2" controlId="formWithdraw">
@@ -59,7 +66,14 @@ export default function Withdraw() {
                 placeholder="Withdraw"
                 value={withdrawValue}
                 onChange={(e) =>
-                  handleChange(e, setWithdrawValue, setStatus, setShow, ref)
+                  handleChange(
+                    e,
+                    setWithdrawValue,
+                    setStatus,
+                    setShow,
+                    setTextColor,
+                    ref
+                  )
                 }
               />
             </Form.Group>

@@ -6,18 +6,25 @@ import Form from "react-bootstrap/Form";
 import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
 import handleChange from "../helper";
+import dayjs from "dayjs";
 
 // ** If using callback function from onChange, use ref
 // OR can change state by calling function in onChange and setting state there (NOT WORKING??)
 
 export default function Deposit() {
   const [show, setShow] = useState(true);
+  const [showModal, setShowModal] = useState(false);
   const [status, setStatus] = useState("");
   const [depositValue, setDepositValue] = useState("");
+  const [textColor, setTextColor] = useState("");
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
   const ref = useRef(null);
   let navigate = useNavigate();
+
+  const styles = {
+    display: ctx.users.length === 1 ? "none" : "flex",
+  };
 
   console.log("depositValue on render", depositValue);
   console.log("ctx", ctx);
@@ -27,6 +34,8 @@ export default function Deposit() {
   // Deny page entry &/or redirect to Create Account page
 
   useEffect(() => {
+    ctx.users.length === 0 ? setShowModal(true) : setShowModal(false);
+
     if (ctx.users.length === 0) {
       navigate("/");
     }
@@ -40,9 +49,13 @@ export default function Deposit() {
     currentUser.balance += depositInt;
     currentUser.transactions = [
       ...currentUser.transactions,
-      `Deposit $${depositInt}`,
+      {
+        info: `Deposit $${depositInt}`,
+        timeStamp: dayjs().format("MM/DD/YYYY HH:mm:ss"),
+      },
     ];
 
+    setTextColor("green");
     setStatus("Deposit Complete!");
     setShow(true);
     setDepositValue("");
@@ -51,11 +64,11 @@ export default function Deposit() {
   return (
     <div className="page-wrapper">
       <h1>Deposit</h1>
-
       <CustomCard
         bgcolor="light"
         header="Deposit Into Account"
-        status={status}
+        statusText={status}
+        statusColor={textColor}
         body={
           <Form className="create-acc-form">
             <Form.Group className="mb-2" controlId="formDeposit">
@@ -70,7 +83,14 @@ export default function Deposit() {
                 placeholder="Deposit"
                 value={depositValue}
                 onChange={(e) =>
-                  handleChange(e, setDepositValue, setStatus, setShow, ref)
+                  handleChange(
+                    e,
+                    setDepositValue,
+                    setStatus,
+                    setShow,
+                    setTextColor,
+                    ref
+                  )
                 }
                 // onChange={handleChange}
                 /*onChange={(e) => setDepositVal(e.currentTarget.value)} */
@@ -85,9 +105,9 @@ export default function Deposit() {
           </Form>
         }
       />
-
       {/* DEVELOPMENT ONLY */}
       <div>{JSON.stringify(currentUser)}</div>
+      {/* <div class="overlay"></div> */}
     </div>
   );
 }

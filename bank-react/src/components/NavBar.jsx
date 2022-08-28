@@ -4,9 +4,10 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Route, Link, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "../pages/Home";
-import CreateAccount from "../pages/CreateAcc";
+import CreateAccount from "../pages/CreateAccount";
 import Data from "../pages/Data";
 import Deposit from "../pages/Deposit";
+import DepositNew from "../pages/DepositNew";
 import Withdraw from "../pages/Withdraw";
 import { UserContext } from "../main";
 
@@ -79,7 +80,7 @@ export default function NavBar() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/createaccount" element={<CreateAccount />} />
-            <Route path="/deposit" element={<Deposit />} />
+            <Route path="/deposit" element={<DepositNew />} />
             <Route path="/withdraw" element={<Withdraw />} />
             <Route path="/data" element={<Data />} />
           </Routes>
