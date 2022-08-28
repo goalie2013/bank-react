@@ -32,28 +32,28 @@ export default function NavBar() {
               <Nav>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/createaccount" style={style}>
+                    <Link to="/createaccount" style={style} className="link">
                       Create Account
                     </Link>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/deposit" style={style}>
+                    <Link to="/deposit" style={style} className="link">
                       Deposit
                     </Link>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/withdraw" style={style}>
+                    <Link to="/withdraw" style={style} className="link">
                       Withdraw
                     </Link>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/data" style={style}>
+                    <Link to="/data" style={style} className="link">
                       All Data
                     </Link>
                   </Nav.Link>
@@ -63,7 +63,19 @@ export default function NavBar() {
           </Container>
         </Navbar>
 
-        <UserContext.Provider value={{ users: [] }}>
+        <UserContext.Provider
+          value={{
+            users: [
+              {
+                name: "SampleUser",
+                email: "email@address.com",
+                password: "password",
+                balance: 0,
+                transactions: [],
+              },
+            ],
+          }}
+        >
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/createaccount" element={<CreateAccount />} />

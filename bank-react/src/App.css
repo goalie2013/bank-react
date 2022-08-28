@@ -22,18 +22,25 @@ body {
   min-height: 9vh;
 }
 
+.link:hover {
+  text-decoration: underline;
+}
+
 .page-wrapper {
   display: flex;
   flex-direction: column;
   place-items: center;
   margin-top: 2rem;
   min-height: 80vh;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 /* Create Account */
 .create-acc-form {
   display: flex;
   flex-direction: column;
+  padding: 1rem;
 }
 .submit-btn {
   place-items: center;

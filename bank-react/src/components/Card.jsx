@@ -1,8 +1,9 @@
 import React from "react";
-import SubmitBtn from "../components/SubmitBtn";
 import Card from "react-bootstrap/Card";
 
 export default function CustomCard(props) {
+  // Dynamic Styles
+  // Separate Card Header & Body so doesn't have to be the same color
   function classes(str) {
     if (str === "header") {
       const bg = props.bgHeaderColor ? " bg-" + props.bgHeaderColor : " ";
@@ -22,7 +23,11 @@ export default function CustomCard(props) {
   return (
     <Card
       className={classes()}
-      style={{ backgroundColor: props.bgColor, maxWidth: "25rem" }}
+      style={{
+        backgroundColor: props.bgColor,
+        width: "25rem",
+        marginTop: "2.5rem",
+      }}
     >
       <Card.Header
         className={classes("header")}
