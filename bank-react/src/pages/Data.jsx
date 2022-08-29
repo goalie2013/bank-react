@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import Transaction from "../components/Transaction";
 import { UserContext } from "../main";
-import Card from "react-bootstrap/Card";
 import CustomCard from "../components/Card";
+import { COLORS } from "../themes";
 
 export default function Data() {
   const ctx = useContext(UserContext);
@@ -21,9 +21,8 @@ export default function Data() {
       </h3>
       {/* <h3>Transaction History</h3> */}
       <CustomCard
-        bgcolor="light"
+        bgHeaderColor={COLORS.cardHeader}
         header={`${currentUser.name} Transaction History`}
-        statusText={status}
         body={<h4>{transactions}</h4>}
       ></CustomCard>
       {/* {transactions} */}

@@ -5,25 +5,36 @@ import Form from "react-bootstrap/Form";
 import CustomCard from "../components/Card";
 import { UserContext } from "../main";
 import validator from "validator";
+import { COLORS } from "../themes";
 
 export default function CreateAccount() {
   const [show, setShow] = useState(true);
   const [status, setStatus] = useState("");
-  const [textColor, setTextColor] = useState("");
-  const [txtMutedClass, setTxtMutedClass] = useState("gray");
+  const [statusTextColor, setStatusTextColor] = useState("");
+  const [nameTxtColor, setNameTxtColor] = useState("black");
+  const [emailTxtColor, setEmailTxtColor] = useState("black");
+  const [passTxtColor, setPassTxtColor] = useState("gray");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const ctx = useContext(UserContext);
   console.log("ctx", ctx);
 
-  const styles = {
-    color: txtMutedClass,
+  const nameStyles = {
+    color: nameTxtColor,
+  };
+  const emailStyles = {
+    color: emailTxtColor,
+  };
+  const passStyles = {
+    color: passTxtColor,
   };
 
   function validate(field, label) {
+    console.log("---- validate ----");
+
     if (!field) {
-      setTextColor("red");
+      setStatusTextColor("red");
       setStatus(
         `Error: ${
           label[0].toUpperCase() + label.substring(1)
@@ -34,26 +45,37 @@ export default function CreateAccount() {
 
     // Name Validation (No special characters or numbers)
     if (field === name && !validator.matches(field, /[a-zA-Z ]+$/)) {
-      setTextColor("red");
-      setStatus("NAME NOT VALID");
+      setStatusTextColor("red");
+      setNameTxtColor("red");
+      setStatus("Name must only contain letters");
       return false;
+    } else {
+      setStatusTextColor("");
+      setNameTxtColor("black");
     }
 
     // Email Validation
     if (field === email && !validator.isEmail(field)) {
       console.log("EMAIL VALIDATION");
-      setTextColor("red");
-      setTxtMutedClass("red");
-      setStatus("EMAIL NOT VALID. TRY AGAIN");
+      setStatusTextColor("red");
+      setEmailTxtColor("red");
+      setStatus("Email not valid. Try Again");
       return false;
+    } else {
+      setStatusTextColor("");
+      setEmailTxtColor("black");
     }
 
     // Password Length Validation
     if (field === password && field.length < 8) {
-      setTextColor("red");
-      setStatus("PASSWORD MUST BE AT LEAST 8 CHARACTERS");
+      setStatusTextColor("red");
+      setPassTxtColor("red");
+      setStatus("Password must be at least 8 characters");
       // document.documentElement.style.setProperty("--password-txt-color", "red");
       return false;
+    } else {
+      setStatusTextColor("");
+      setPassTxtColor("gray");
     }
 
     // If Validation Passed:
@@ -75,6 +97,7 @@ export default function CreateAccount() {
       email: email,
       password: password,
       balance: 0,
+      transactions: [],
     });
     setShow(false);
   }
@@ -91,35 +114,45 @@ export default function CreateAccount() {
       <h1>Create Account</h1>
 
       <CustomCard
-        bgcolor="light"
+        bgHeaderColor={COLORS.cardHeader}
         header="Create Account"
+        bgColor={COLORS.cardBackground}
         statusText={status}
-        statusColor={textColor}
+        statusColor={statusTextColor}
         body={
           show ? (
             <>
               <Card.Body>
-                <Form className="create-acc-form">
+                <Form className="form">
                   <Form.Group className="mb-4" controlId="formName">
                     {/* <Form.Label>Name</Form.Label> */}
                     <Form.Control
+                      style={nameStyles}
                       required
                       type="text"
                       placeholder="Name"
                       value={name}
-                      onChange={(e) => setName(e.currentTarget.value)}
+                      onChange={(e) => {
+                        setName(e.currentTarget.value);
+                        setStatus("");
+                      }}
                     />
                   </Form.Group>
 
                   <Form.Group className="mb-4" controlId="formEmail">
                     <Form.Control
+                      style={emailStyles}
                       required
                       type="email"
                       placeholder="Email"
                       value={email}
-                      onChange={(e) => setEmail(e.currentTarget.value)}
+                      onChange={(e) => {
+                        setEmail(e.currentTarget.value);
+                        setEmailTxtColor("black");
+                        setStatus("");
+                      }}
                     />
-                    <Form.Text style={styles}>
+                    <Form.Text>
                       We'll never share your email with anyone else.
                     </Form.Text>
                   </Form.Group>
@@ -130,12 +163,14 @@ export default function CreateAccount() {
                       type="password"
                       placeholder="Password"
                       value={password}
-                      onChange={(e) => setPassword(e.currentTarget.value)}
+                      onChange={(e) => {
+                        setPassword(e.currentTarget.value);
+                        setPassTxtColor("gray");
+                        setStatus("");
+                      }}
                     />
-                    <Form.Text>
-                      <div className="txt-muted">
-                        Must be at least 8 characters long
-                      </div>
+                    <Form.Text style={passStyles}>
+                      Must be at least 8 characters long
                     </Form.Text>
                   </Form.Group>
 
@@ -145,8 +180,12 @@ export default function CreateAccount() {
             </>
           ) : (
             <>
-              <h5 style={{ textAlign: "center" }}>Success</h5>
-              <SubmitBtn name="Add Another Account" handleClick={clearForm} />
+              <Card.Body className="form">
+                <h5 style={{ textAlign: "center", fontSize: "1.5em" }}>
+                  Success
+                </h5>
+                <SubmitBtn name="Add Another Account" handleClick={clearForm} />
+              </Card.Body>
             </>
           )
         }

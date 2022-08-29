@@ -1,17 +1,18 @@
 import React from "react";
 import CustomCard from "../components/Card";
 import moneyPic from "../assets/money.jpeg";
+import { COLORS } from "../themes.js";
 
 export default function Home() {
   return (
     <div className="page-wrapper">
       <h1>Home</h1>
       <CustomCard
-        bgHeaderColor="aqua"
+        bgHeaderColor={COLORS.cardHeader}
         txtColor="#000"
-        bgColor="#ccc"
-        header="BadBank Welcome Page"
-        title="Welcome to the bank"
+        bgColor={COLORS.cardBackground}
+        header="BadBank"
+        title="Welcome to our Bank"
         text="You can use this bank to deposit and withdraw savings"
         body={
           <img

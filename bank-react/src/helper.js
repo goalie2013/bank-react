@@ -1,3 +1,6 @@
+// ----------------------------------------
+// Deposit & Withdraw handleChange function
+// ----------------------------------------
 export default function handleChange(
   e,
   setValue,
@@ -10,7 +13,6 @@ export default function handleChange(
   setValue(e.target.value);
   const target = e.target;
   const name = target.name;
-  let error = "";
 
   console.log("target.value", target.value);
   console.log(typeof target.value);
@@ -43,38 +45,44 @@ export default function handleChange(
   else setShow(true);
 }
 
-// Old function in Deposit.jsx
-// function handleChange(e) {
-//   console.log("-- handleChange --");
-//   setDepositValue(e.target.value);
-//   const target = e.target;
-//   const name = target.name;
-//   let error = "";
+// ----------------------------------------
+// Deposit & Withdraw handleChange function
+// ----------------------------------------
+// export default function handleChange(
+//   value,
+//   name,
+//   setStatus,
+//   setShow,
+//   setTextColor
+// ) {
+//   console.log("---- handleChange ----");
 
-//   console.log("target.value", target.value);
-//   console.log(typeof target.value);
+//   console.log("deposit Value: ", value);
 
-//   if (isNaN(target.value)) {
-//     setStatus(`${name} field can only be number`);
-//     setShow(true);
-//     return false;
-//   }
-//   if (!target.value) {
+//   if (!value) {
+//     setTextColor("red");
 //     setStatus(`${name} field cannot be empty`);
 //     setShow(true);
 //     return false;
 //   }
+//   if (isNaN(value)) {
+//     setTextColor("red");
+//     setStatus(`${name} field can only be number`);
+//     setShow(true);
+//     return false;
+//   }
 
-//   if (parseInt(target.value) < 0) {
+//   if (parseInt(value) < 0) {
 //     console.log("NEGATIVE");
+//     setTextColor("red");
 //     setStatus(`${name} field cannot be negative`);
 //     setShow(true);
 //     return false;
 //   }
 
-//   console.log("ref", ref.current.value);
-//   console.log("depositVal", depositValue);
+//   // console.log('ref', ref.current.value);
+//   //   console.log("depositVal", depositValue);
 //   setStatus("");
-//   if (ref.current.value) setShow(false);
+//   if (value) setShow(false);
 //   else setShow(true);
 // }

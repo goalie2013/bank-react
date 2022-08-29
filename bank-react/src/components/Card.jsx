@@ -27,6 +27,7 @@ export default function CustomCard(props) {
         backgroundColor: props.bgColor,
         width: "25rem",
         marginTop: "2.5rem",
+        boxShadow: "0 3rem 5rem rgba(0, 0, 0, 0.2)",
       }}
     >
       <Card.Header

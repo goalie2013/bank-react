@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useContext, useRef } from "react";
 import SubmitBtn from "../components/SubmitBtn";
 import CustomCard from "../components/Card";
-import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import { UserContext } from "../main";
-import { useNavigate } from "react-router-dom";
 import handleChange from "../helper";
 import dayjs from "dayjs";
+import { COLORS } from "../themes";
 
-// ** If using callback function from onChange, use ref
+// ** If grabbing value from onChange on each keychange, use ref
+// ** setState won't update until next render, so messes up disabled/abled button
 // OR can change state by calling function in onChange and setting state there (NOT WORKING??)
 
 export default function Deposit() {
@@ -20,26 +20,10 @@ export default function Deposit() {
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
   const ref = useRef(null);
-  let navigate = useNavigate();
-
-  const styles = {
-    display: ctx.users.length === 1 ? "none" : "flex",
-  };
 
   console.log("depositValue on render", depositValue);
   console.log("ctx", ctx);
   console.log("currentUser", currentUser);
-
-  // If context is empty, means no user signed up -->
-  // Deny page entry &/or redirect to Create Account page
-
-  useEffect(() => {
-    ctx.users.length === 0 ? setShowModal(true) : setShowModal(false);
-
-    if (ctx.users.length === 0) {
-      navigate("/");
-    }
-  }, []);
 
   function handleDeposit() {
     console.log("-- handleDeposit --");
@@ -65,12 +49,13 @@ export default function Deposit() {
     <div className="page-wrapper">
       <h1>Deposit</h1>
       <CustomCard
-        bgcolor="light"
+        bgHeaderColor={COLORS.cardHeader}
         header="Deposit Into Account"
+        bgColor={COLORS.cardBackground}
         statusText={status}
         statusColor={textColor}
         body={
-          <Form className="create-acc-form">
+          <Form className="form">
             <Form.Group className="mb-2" controlId="formDeposit">
               <Form.Label style={{ fontSize: "1.5rem" }}>
                 Deposit Amount

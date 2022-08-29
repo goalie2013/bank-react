@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+import { COLORS } from "../themes";
 
 export default function SubmitBtn(props) {
   return props.disabled ? (
@@ -8,8 +9,9 @@ export default function SubmitBtn(props) {
       variant="primary"
       className="submit-btn py-3"
       style={{
-        backgroundColor: "rgb(104, 29, 87)",
-        borderColor: "rgb(104, 29, 87)",
+        backgroundColor: `${COLORS.btnColor}`,
+        borderColor: "#e1e2e2",
+        color: "#000",
       }}
       onClick={props.handleClick}
     >
@@ -20,8 +22,9 @@ export default function SubmitBtn(props) {
       variant="primary"
       className="submit-btn py-3"
       style={{
-        backgroundColor: "rgb(104, 29, 87)",
-        borderColor: "rgb(104, 29, 87)",
+        backgroundColor: `${COLORS.btnColor}`,
+        borderColor: "#e1e2e2",
+        color: "#000",
       }}
       onClick={props.handleClick}
     >

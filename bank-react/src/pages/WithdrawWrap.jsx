@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
-import Deposit from "./Deposit";
+import Withdraw from "./Withdraw";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -11,7 +11,7 @@ import Modal from "react-bootstrap/Modal";
 
 //TODO: Media query for Modal
 
-export default function DepositNew() {
+export default function WithdrawWrap() {
   const [showModal, setShowModal] = useState(false);
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
@@ -106,7 +106,7 @@ export default function DepositNew() {
         </div>
       ) : (
         <>
-          <Deposit />
+          <Withdraw />
         </>
       )}
     </>

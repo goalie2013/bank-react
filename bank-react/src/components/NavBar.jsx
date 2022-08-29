@@ -6,9 +6,8 @@ import { Route, Link, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import CreateAccount from "../pages/CreateAccount";
 import Data from "../pages/Data";
-import Deposit from "../pages/Deposit";
 import DepositNew from "../pages/DepositNew";
-import Withdraw from "../pages/Withdraw";
+import WithdrawWrap from "../pages/WithdrawWrap";
 import { UserContext } from "../main";
 
 export default function NavBar() {
@@ -18,7 +17,7 @@ export default function NavBar() {
   return (
     <div>
       <Router>
-        <Navbar bg="light" expand="lg" className="p-3 navbar">
+        <Navbar variant="light" expand="lg" className="p-3 navbar">
           <Container>
             <Navbar.Brand>
               <Link to="/" style={style}>
@@ -81,7 +80,7 @@ export default function NavBar() {
             <Route path="/" element={<Home />} />
             <Route path="/createaccount" element={<CreateAccount />} />
             <Route path="/deposit" element={<DepositNew />} />
-            <Route path="/withdraw" element={<Withdraw />} />
+            <Route path="/withdraw" element={<WithdrawWrap />} />
             <Route path="/data" element={<Data />} />
           </Routes>
         </UserContext.Provider>
