@@ -8,13 +8,13 @@ import dayjs from "dayjs";
 import { COLORS } from "../themes";
 
 export default function Withdraw() {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(false);
   const [status, setStatus] = useState("");
   const [withdrawValue, setWithdrawValue] = useState("");
   const [textColor, setTextColor] = useState("");
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
-  const ref = useRef(null);
+  // const ref = useRef(null);
 
   if (ctx.users[ctx.users.length - 1] === currentUser) console.log("SAME");
 
@@ -22,10 +22,12 @@ export default function Withdraw() {
     console.log("-- handleWithdraw --");
     console.log("withdrawValue", withdrawValue, typeof withdrawValue);
 
+    // Do NOT have to caste withdrawValue to int. Works bc JS internally converts a subtraction to a number
+    // DOES NOT WORK FOR ADDITION
     if (currentUser.balance - withdrawValue < 0) {
       setTextColor("red");
       setStatus(`Transaction FAILED. Balance cannot be negative`);
-      setShow(true);
+      setShow(false);
       return false;
     }
 
@@ -40,7 +42,7 @@ export default function Withdraw() {
 
     setTextColor("green");
     setStatus("Withdraw Complete!");
-    setShow(true);
+    setShow(false);
     setWithdrawValue("");
   }
 
@@ -61,7 +63,7 @@ export default function Withdraw() {
               </Form.Label>
               <Form.Control
                 required
-                ref={ref}
+                // ref={ref}
                 size="lg"
                 type="text"
                 placeholder="Withdraw"
@@ -72,17 +74,16 @@ export default function Withdraw() {
                     setWithdrawValue,
                     setStatus,
                     setShow,
-                    setTextColor,
-                    ref
+                    setTextColor
                   )
                 }
               />
             </Form.Group>
 
             {show ? (
-              <SubmitBtn name="Withdraw" disabled="true" />
-            ) : (
               <SubmitBtn name="Withdraw" handleClick={handleWithdraw} />
+            ) : (
+              <SubmitBtn name="Withdraw" disabled="true" />
             )}
           </Form>
         }

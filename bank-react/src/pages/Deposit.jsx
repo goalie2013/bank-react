@@ -7,19 +7,17 @@ import handleChange from "../helper";
 import dayjs from "dayjs";
 import { COLORS } from "../themes";
 
-// ** If grabbing value from onChange on each keychange, use ref
+// ** If grabbing value from onChange on each keychange, use ref OR e.target.value; NOT depositValue
 // ** setState won't update until next render, so messes up disabled/abled button
-// OR can change state by calling function in onChange and setting state there (NOT WORKING??)
 
 export default function Deposit() {
-  const [show, setShow] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+  const [show, setShow] = useState(false);
   const [status, setStatus] = useState("");
   const [depositValue, setDepositValue] = useState("");
   const [textColor, setTextColor] = useState("");
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
-  const ref = useRef(null);
+  // const ref = useRef(null);
 
   console.log("depositValue on render", depositValue);
   console.log("ctx", ctx);
@@ -27,7 +25,7 @@ export default function Deposit() {
 
   function handleDeposit() {
     console.log("-- handleDeposit --");
-    console.log("ref", ref.current.value, typeof ref.current.value);
+    // console.log("ref", ref.current.value, typeof ref.current.value);
     console.log("depositVal", depositValue, typeof depositValue);
     const depositInt = parseInt(depositValue);
     currentUser.balance += depositInt;
@@ -41,7 +39,7 @@ export default function Deposit() {
 
     setTextColor("green");
     setStatus("Deposit Complete!");
-    setShow(true);
+    setShow(false);
     setDepositValue("");
   }
 
@@ -62,7 +60,7 @@ export default function Deposit() {
               </Form.Label>
               <Form.Control
                 required
-                ref={ref}
+                // ref={ref}
                 size="lg"
                 type="text"
                 placeholder="Deposit"
@@ -73,19 +71,16 @@ export default function Deposit() {
                     setDepositValue,
                     setStatus,
                     setShow,
-                    setTextColor,
-                    ref
+                    setTextColor
                   )
                 }
-                // onChange={handleChange}
-                /*onChange={(e) => setDepositVal(e.currentTarget.value)} */
               />
             </Form.Group>
 
             {show ? (
-              <SubmitBtn name="Deposit" disabled="true" />
-            ) : (
               <SubmitBtn name="Deposit" handleClick={handleDeposit} />
+            ) : (
+              <SubmitBtn name="Deposit" disabled="true" />
             )}
           </Form>
         }

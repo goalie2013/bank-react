@@ -6,8 +6,7 @@ export default function handleChange(
   setValue,
   setStatus,
   setShow,
-  setTextColor,
-  ref
+  setTextColor
 ) {
   console.log("-- handleChange --");
   setValue(e.target.value);
@@ -16,17 +15,18 @@ export default function handleChange(
 
   console.log("target.value", target.value);
   console.log(typeof target.value);
+  // console.log("ref", ref.current.value);
 
   if (isNaN(target.value)) {
     setTextColor("red");
     setStatus(`${name} field can only be number`);
-    setShow(true);
+    setShow(false);
     return false;
   }
   if (!target.value) {
     setTextColor("red");
     setStatus(`${name} field cannot be empty`);
-    setShow(true);
+    setShow(false);
     return false;
   }
 
@@ -34,15 +34,14 @@ export default function handleChange(
     console.log("NEGATIVE");
     setTextColor("red");
     setStatus(`${name} field cannot be negative`);
-    setShow(true);
+    setShow(false);
     return false;
   }
 
-  console.log("ref", ref.current.value);
-  //   console.log("depositVal", depositValue);
   setStatus("");
-  if (ref.current.value) setShow(false);
-  else setShow(true);
+  // if (ref.current.value) setShow(false);
+  if (target.value) setShow(true);
+  else setShow(false);
 }
 
 // ----------------------------------------

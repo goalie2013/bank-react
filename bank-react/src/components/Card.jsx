@@ -16,7 +16,7 @@ export default function CustomCard(props) {
       const bg = props.bgColor ? " bg-" + props.bgColor : " ";
       const txt = props.txtColor ? " text-" + props.txtColor : " text-black";
       // console.log("bg", bg);
-      return "card mb-3 " + bg + txt;
+      return "card custom-card mb-3 " + bg + txt;
     }
   }
 
