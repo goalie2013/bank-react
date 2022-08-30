@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
-import Data from "./Data";
+import Data from "../pages/Data";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import AccessCard from "../components/AccessCard";

@@ -68,6 +68,7 @@ export default function CreateAccount() {
 
     // Password Length Validation
     if (field === password && field.length < 8) {
+      console.log("XDDDDXDXXDXDXD");
       setStatusTextColor("red");
       setPassTxtColor("red");
       setStatus("Password must be at least 8 characters");
@@ -87,6 +88,7 @@ export default function CreateAccount() {
 
   function handleCreate() {
     console.log("handleCreate", name, email, password);
+    // e.preventDefault();
     if (!validate(name, "name")) return;
     if (!validate(email, "email")) return;
     if (!validate(password, "password")) return;
@@ -123,7 +125,7 @@ export default function CreateAccount() {
           show ? (
             <>
               <Card.Body>
-                <Form className="form">
+                <Form className="form" onSubmit={(e) => e.preventDefault()}>
                   <Form.Group className="mb-4" controlId="formName">
                     {/* <Form.Label>Name</Form.Label> */}
                     <Form.Control
