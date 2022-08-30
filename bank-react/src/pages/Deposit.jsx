@@ -3,9 +3,10 @@ import SubmitBtn from "../components/SubmitBtn";
 import CustomCard from "../components/Card";
 import Form from "react-bootstrap/Form";
 import { UserContext } from "../main";
-import handleChange from "../helper";
+import { handleChange, handleKeyPress } from "../helper";
 import dayjs from "dayjs";
 import { COLORS } from "../themes";
+import { Card } from "react-bootstrap";
 
 // ** If grabbing value from onChange on each keychange, use ref OR e.target.value; NOT depositValue
 // ** setState won't update until next render, so messes up disabled/abled button
@@ -22,6 +23,23 @@ export default function Deposit() {
   console.log("depositValue on render", depositValue);
   console.log("ctx", ctx);
   console.log("currentUser", currentUser);
+
+  // function handleKeyPress(e) {
+  //   console.log("--- handleKeyPress ---");
+  //   e.preventDefault();
+  //   if (e.keyCode === 13) {
+  //     if (show === true) {
+  //       handleDeposit();
+  //       return false;
+  //     } else {
+  //       setTextColor("red");
+  //       setStatus("Cannot Complete Deposit");
+  //       return false;
+  //     }
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   function handleDeposit() {
     console.log("-- handleDeposit --");
@@ -53,8 +71,13 @@ export default function Deposit() {
         statusText={status}
         statusColor={textColor}
         body={
-          <Form className="form">
-            <Form.Group className="mb-2" controlId="formDeposit">
+          <Form
+            className="form"
+            onSubmit={(e) =>
+              handleKeyPress(e, handleDeposit, setTextColor, setStatus)
+            }
+          >
+            <Form.Group className="mb-4" controlId="formDeposit">
               <Form.Label style={{ fontSize: "1.5rem" }}>
                 Deposit Amount
               </Form.Label>
@@ -86,8 +109,7 @@ export default function Deposit() {
         }
       />
       {/* DEVELOPMENT ONLY */}
-      <div>{JSON.stringify(currentUser)}</div>
-      {/* <div class="overlay"></div> */}
+      {/* <div>{JSON.stringify(currentUser)}</div> */}
     </div>
   );
 }

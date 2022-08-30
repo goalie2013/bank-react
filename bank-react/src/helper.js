@@ -1,13 +1,7 @@
 // ----------------------------------------
 // Deposit & Withdraw handleChange function
 // ----------------------------------------
-export default function handleChange(
-  e,
-  setValue,
-  setStatus,
-  setShow,
-  setTextColor
-) {
+export function handleChange(e, setValue, setStatus, setShow, setTextColor) {
   console.log("-- handleChange --");
   setValue(e.target.value);
   const target = e.target;
@@ -43,6 +37,25 @@ export default function handleChange(
   if (target.value) setShow(true);
   else setShow(false);
 }
+
+export function handleKeyPress(e, handleTransaction, setTextColor, setStatus) {
+  console.log("--- handleKeyPress ---");
+  e.preventDefault();
+  if (e.keyCode === 13) {
+    if (show === true) {
+      handleTransaction();
+      return false;
+    } else {
+      setTextColor("red");
+      setStatus("Cannot Complete Deposit");
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
+export default { handleChange, handleKeyPress };
 
 // ----------------------------------------
 // Deposit & Withdraw handleChange function

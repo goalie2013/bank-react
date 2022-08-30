@@ -134,6 +134,7 @@ export default function CreateAccount() {
                       value={name}
                       onChange={(e) => {
                         setName(e.currentTarget.value);
+                        setNameTxtColor("black");
                         setStatus("");
                       }}
                     />

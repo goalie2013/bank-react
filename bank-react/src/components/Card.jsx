@@ -22,7 +22,7 @@ export default function CustomCard(props) {
 
   return (
     <Card
-      className={classes()}
+      className="{classes()} kk"
       style={{
         backgroundColor: props.bgColor,
         width: "25rem",

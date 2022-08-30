@@ -27,6 +27,7 @@ export default function SubmitBtn(props) {
         color: "#000",
       }}
       onClick={props.handleClick}
+      type="submit"
     >
       {props.name}
     </Button>

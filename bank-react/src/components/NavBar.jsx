@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,23 +8,33 @@ import CreateAccount from "../pages/CreateAccount";
 import Data from "../pages/Data";
 import DepositNew from "../pages/DepositNew";
 import WithdrawWrap from "../pages/WithdrawWrap";
-import { UserContext } from "../main";
 
 export default function NavBar() {
+  const [expanded, setExpanded] = useState(false);
+
   const style = {
     color: "black",
   };
+
   return (
     <div>
       <Router>
-        <Navbar variant="light" expand="lg" className="p-3 navbar">
+        <Navbar
+          variant="light"
+          expand="md"
+          expanded={expanded}
+          className="p-3 navbar"
+        >
           <Container>
             <Navbar.Brand>
-              <Link to="/" style={style}>
+              <Link to="/" style={style} onClick={() => setExpanded(false)}>
                 Bad Bank
               </Link>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Toggle
+              aria-controls="responsive-navbar-nav"
+              onClick={() => setExpanded(expanded ? false : "expanded")}
+            />
             <Navbar.Collapse
               id="basic-navbar-nav"
               className="justify-content-end"
@@ -32,28 +42,48 @@ export default function NavBar() {
               <Nav>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/createaccount" style={style} className="link">
+                    <Link
+                      to="/createaccount"
+                      style={style}
+                      className="link"
+                      onClick={() => setExpanded(false)}
+                    >
                       Create Account
                     </Link>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/deposit" style={style} className="link">
+                    <Link
+                      to="/deposit"
+                      style={style}
+                      className="link"
+                      onClick={() => setExpanded(false)}
+                    >
                       Deposit
                     </Link>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/withdraw" style={style} className="link">
+                    <Link
+                      to="/withdraw"
+                      style={style}
+                      className="link"
+                      onClick={() => setExpanded(false)}
+                    >
                       Withdraw
                     </Link>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <Link to="/data" style={style} className="link">
+                    <Link
+                      to="/data"
+                      style={style}
+                      className="link"
+                      onClick={() => setExpanded(false)}
+                    >
                       All Data
                     </Link>
                   </Nav.Link>
@@ -63,27 +93,13 @@ export default function NavBar() {
           </Container>
         </Navbar>
 
-        <UserContext.Provider
-          value={{
-            users: [
-              {
-                name: "SampleUser",
-                email: "email@address.com",
-                password: "password",
-                balance: 0,
-                transactions: [],
-              },
-            ],
-          }}
-        >
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/createaccount" element={<CreateAccount />} />
-            <Route path="/deposit" element={<DepositNew />} />
-            <Route path="/withdraw" element={<WithdrawWrap />} />
-            <Route path="/data" element={<Data />} />
-          </Routes>
-        </UserContext.Provider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/createaccount" element={<CreateAccount />} />
+          <Route path="/deposit" element={<DepositNew />} />
+          <Route path="/withdraw" element={<WithdrawWrap />} />
+          <Route path="/data" element={<Data />} />
+        </Routes>
       </Router>
     </div>
   );

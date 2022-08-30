@@ -3,7 +3,7 @@ import CustomCard from "../components/Card";
 import Form from "react-bootstrap/Form";
 import SubmitBtn from "../components/SubmitBtn";
 import { UserContext } from "../main";
-import handleChange from "../helper";
+import { handleChange, handleKeyPress } from "../helper";
 import dayjs from "dayjs";
 import { COLORS } from "../themes";
 
@@ -56,7 +56,12 @@ export default function Withdraw() {
         statusText={status}
         statusColor={textColor}
         body={
-          <Form className="form">
+          <Form
+            className="form"
+            onSubmit={(e) =>
+              handleKeyPress(e, handleWithdraw, setTextColor, setStatus)
+            }
+          >
             <Form.Group className="mb-2" controlId="formWithdraw">
               <Form.Label style={{ fontSize: "1.5rem" }}>
                 Withdraw Amount
@@ -89,7 +94,7 @@ export default function Withdraw() {
         }
       />
       {/* DEVELOPMENT ONLY */}
-      <div>{JSON.stringify(currentUser)}</div>
+      {/* <div>{JSON.stringify(currentUser)}</div> */}
     </div>
   );
 }
