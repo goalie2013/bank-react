@@ -5,8 +5,8 @@ import Navbar from "react-bootstrap/Navbar";
 import { Route, Link, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import CreateAccount from "../pages/CreateAccount";
-import Data from "../pages/Data";
-import DepositNew from "../pages/DepositNew";
+import DataWrap from "../pages/DataWrap";
+import DepositWrap from "../pages/DepositWrap";
 import WithdrawWrap from "../pages/WithdrawWrap";
 
 export default function NavBar() {
@@ -96,9 +96,9 @@ export default function NavBar() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/createaccount" element={<CreateAccount />} />
-          <Route path="/deposit" element={<DepositNew />} />
+          <Route path="/deposit" element={<DepositWrap />} />
           <Route path="/withdraw" element={<WithdrawWrap />} />
-          <Route path="/data" element={<Data />} />
+          <Route path="/data" element={<DataWrap />} />
         </Routes>
       </Router>
     </div>

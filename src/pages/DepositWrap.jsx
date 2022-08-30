@@ -3,15 +3,9 @@ import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
 import Deposit from "./Deposit";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import Card from "react-bootstrap/Card";
 
-// ** If using callback function from onChange, use ref
-// OR can change state by calling function in onChange and setting state there
-// TODO:(NOT WORKING?? LOOK AT CREATE ACCOUNT)
-
-//TODO: Media query for Modal
-
-export default function DepositNew() {
+export default function DepositWrap() {
   const [showModal, setShowModal] = useState(false);
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
@@ -51,57 +45,43 @@ export default function DepositNew() {
         <div
           style={{
             display: "flex",
+            height: "100%",
             justifyContent: "center",
             alignItems: "center",
             // top: "60%",
           }}
         >
-          <Modal.Dialog style={modalStyles}>
-            <Modal.Header>
-              <Modal.Title style={{ color: "red" }}>Access Denied</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-              <p style={{ fontSize: "1.5em", marginTop: "1rem" }}>
+          <Card className="card-denied">
+            <Card.Header style={{ color: "white", backgroundColor: "red" }}>
+              ACCESS DENIED
+            </Card.Header>
+            <Card.Body style={{ padding: "2rem" }}>
+              <p style={{ fontSize: "1.5em", marginBottom: "1rem" }}>
                 No user detected.
                 <br />
                 Must create account to access Bank transactions.
               </p>
-            </Modal.Body>
+              <footer className="denied-btns">
+                <Button
+                  variant="primary"
+                  className="denied-btn-1"
+                  value="Create Account"
+                  onClick={handleClick}
+                >
+                  Create Account
+                </Button>
+                <Button
+                  variant="primary"
+                  className="denied-btn-2"
+                  value="Home"
+                  onClick={handleClick}
+                >
+                  Home
+                </Button>
+              </footer>
+            </Card.Body>
+          </Card>
 
-            <Modal.Footer
-              style={{
-                justifyContent: "center",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <Button
-                variant="primary"
-                style={{
-                  marginRight: "1rem",
-                  width: "40%",
-                  padding: "1rem",
-                }}
-                value="Create Account"
-                onClick={handleClick}
-              >
-                Create Account
-              </Button>
-              <Button
-                variant="primary"
-                style={{
-                  width: "40%",
-                  padding: "1rem",
-                }}
-                value="Home"
-                onClick={handleClick}
-              >
-                Home
-              </Button>
-            </Modal.Footer>
-          </Modal.Dialog>
           <div className="overlay"></div>
         </div>
       ) : (

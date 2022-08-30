@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
-import Withdraw from "./Withdraw";
+import Data from "./Data";
 import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 
-// ** If using callback function from onChange, use ref
-// OR can change state by calling function in onChange and setting state there
-
-export default function WithdrawWrap() {
+export default function DataWrap() {
   const [showModal, setShowModal] = useState(false);
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
@@ -89,74 +85,9 @@ export default function WithdrawWrap() {
         </div>
       ) : (
         <>
-          <Withdraw />
+          <Data />
         </>
       )}
     </>
   );
 }
-
-/*
-{showModal ? (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            // top: "60%",
-          }}
-        >
-          <Modal.Dialog style={modalStyles}>
-            <Modal.Header>
-              <Modal.Title style={{ color: "red" }}>Access Denied</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-              <p style={{ fontSize: "1.5em", marginTop: "1rem" }}>
-                No user detected.
-                <br />
-                Must create account to access Bank transactions.
-              </p>
-            </Modal.Body>
-
-            <Modal.Footer
-              style={{
-                justifyContent: "center",
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <Button
-                variant="primary"
-                style={{
-                  marginRight: "1rem",
-                  width: "40%",
-                  padding: "1rem",
-                }}
-                value="Create Account"
-                onClick={handleClick}
-              >
-                Create Account
-              </Button>
-              <Button
-                variant="primary"
-                style={{
-                  width: "40%",
-                  padding: "1rem",
-                }}
-                value="Home"
-                onClick={handleClick}
-              >
-                Home
-              </Button>
-            </Modal.Footer>
-          </Modal.Dialog>
-          <div className="overlay"></div>
-        </div>
-      ) : (
-        <>
-          <Withdraw />
-        </>
-      )}
-*/
