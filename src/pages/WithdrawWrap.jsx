@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Withdraw from "./Withdraw";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Card from "react-bootstrap/Card";
 
 // ** If using callback function from onChange, use ref
 // OR can change state by calling function in onChange and setting state there

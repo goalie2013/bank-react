@@ -3,6 +3,7 @@ import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
 import Data from "./Data";
 import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 export default function DataWrap() {
   const [showModal, setShowModal] = useState(false);
