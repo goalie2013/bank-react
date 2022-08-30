@@ -5,21 +5,20 @@ export function handleChange(e, setValue, setStatus, setShow, setTextColor) {
   console.log("-- handleChange --");
   setValue(e.target.value);
   const target = e.target;
-  const name = target.name;
 
   console.log("target.value", target.value);
   console.log(typeof target.value);
   // console.log("ref", ref.current.value);
 
-  if (isNaN(target.value)) {
+  if (isNaN(target.value) && target.value !== "-") {
     setTextColor("red");
-    setStatus(`${name} field can only be number`);
+    setStatus(`Please submit numbers only`);
     setShow(false);
     return false;
   }
   if (!target.value) {
     setTextColor("red");
-    setStatus(`${name} field cannot be empty`);
+    setStatus(`Value is empty`);
     setShow(false);
     return false;
   }
@@ -27,7 +26,7 @@ export function handleChange(e, setValue, setStatus, setShow, setTextColor) {
   if (parseInt(target.value) < 0) {
     console.log("NEGATIVE");
     setTextColor("red");
-    setStatus(`${name} field cannot be negative`);
+    setStatus(`Cannot submit a negative value`);
     setShow(false);
     return false;
   }
