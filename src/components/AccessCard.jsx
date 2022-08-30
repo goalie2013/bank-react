@@ -9,7 +9,7 @@ export default function AccessCard(props) {
         ACCESS DENIED
       </Card.Header>
       <Card.Body style={{ padding: "2rem" }}>
-        <p style={{ fontSize: "1.5em", marginBottom: "1rem" }}>
+        <p style={{ fontSize: "1.5em", marginBottom: "1rem" }} className="xf">
           No user detected.
           <br />
           {/* Must create account to access Bank transactions. */}
