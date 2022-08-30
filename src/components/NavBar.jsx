@@ -5,9 +5,10 @@ import Navbar from "react-bootstrap/Navbar";
 import { Route, Link, BrowserRouter as Router, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import CreateAccount from "../pages/CreateAccount";
-import DataWrap from "../pages/DataWrap";
-import DepositWrap from "../pages/DepositWrap";
-import WithdrawWrap from "../pages/WithdrawWrap";
+import PageWrapper from "../pages/PageWrapper";
+import Deposit from "../pages/Deposit";
+import Withdraw from "../pages/Withdraw";
+import Data from "../pages/Data";
 
 export default function NavBar() {
   const [expanded, setExpanded] = useState(false);
@@ -96,9 +97,18 @@ export default function NavBar() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/createaccount" element={<CreateAccount />} />
-          <Route path="/deposit" element={<DepositWrap />} />
-          <Route path="/withdraw" element={<WithdrawWrap />} />
-          <Route path="/data" element={<DataWrap />} />
+          <Route
+            path="/deposit"
+            element={<PageWrapper pageComponent={<Deposit />} />}
+          />
+          <Route
+            path="/withdraw"
+            element={<PageWrapper pageComponent={<Withdraw />} />}
+          />
+          <Route
+            path="/data"
+            element={<PageWrapper pageComponent={<Data />} />}
+          />
         </Routes>
       </Router>
     </div>

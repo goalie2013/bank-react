@@ -55,7 +55,12 @@ export function handleKeyPress(e, handleTransaction, setTextColor, setStatus) {
   }
 }
 
-export default { handleChange, handleKeyPress };
+export function handleNavigate(btnEvent, navigate) {
+  btnEvent.target.value === "Home" ? navigate("/") : navigate("/createaccount");
+  // console.log(btnEvent.target.value);
+}
+
+export default { handleChange, handleKeyPress, handleNavigate };
 
 // ----------------------------------------
 // Deposit & Withdraw handleChange function

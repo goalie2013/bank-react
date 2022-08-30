@@ -1,12 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
-import Data from "./Data";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 import AccessCard from "../components/AccessCard";
+import { handleNavigate } from "../helper";
 
-export default function DataWrap() {
+export default function PageWrapper(props) {
   const [showModal, setShowModal] = useState(false);
   const ctx = useContext(UserContext);
   const currentUser = ctx.users[ctx.users.length - 1];
@@ -14,7 +12,6 @@ export default function DataWrap() {
 
   console.log("ctx", ctx);
   console.log("currentUser", currentUser);
-
   console.log("showModal value", showModal);
 
   // If context is empty, means no user signed up -->
@@ -22,12 +19,6 @@ export default function DataWrap() {
   useEffect(() => {
     ctx.users.length === 0 ? setShowModal(true) : setShowModal(false);
   }, []);
-
-  function handleClick(btnEvent) {
-    btnEvent.target.value === "Home"
-      ? navigate("/")
-      : navigate("/createaccount");
-  }
 
   return (
     <>
@@ -42,15 +33,15 @@ export default function DataWrap() {
           }}
         >
           <AccessCard
-            bodyTxt="Must create account to access Bank Transactions History."
-            handleClick={handleClick}
+            bodyTxt="Must create account to access Bank Transactions."
+            handleClick={(e) => handleNavigate(e, navigate)}
           />
+          {/* {props.accessCard} */}
+
           <div className="overlay"></div>
         </div>
       ) : (
-        <>
-          <Data />
-        </>
+        <>{props.pageComponent}</>
       )}
     </>
   );

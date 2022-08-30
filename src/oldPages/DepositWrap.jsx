@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../main";
 import { useNavigate } from "react-router-dom";
 import Deposit from "./Deposit";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import AccessCard from "../components/AccessCard";
 
 export default function DepositWrap() {
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +12,6 @@ export default function DepositWrap() {
 
   console.log("ctx", ctx);
   console.log("currentUser", currentUser);
-
   console.log("showModal value", showModal);
 
   // If context is empty, means no user signed up -->
@@ -40,36 +38,10 @@ export default function DepositWrap() {
             // top: "60%",
           }}
         >
-          <Card className="card-denied">
-            <Card.Header style={{ color: "white", backgroundColor: "red" }}>
-              ACCESS DENIED
-            </Card.Header>
-            <Card.Body style={{ padding: "2rem" }}>
-              <p style={{ fontSize: "1.5em", marginBottom: "1rem" }}>
-                No user detected.
-                <br />
-                Must create account to access Bank transactions.
-              </p>
-              <footer className="denied-btns">
-                <Button
-                  variant="primary"
-                  className="denied-btn-1"
-                  value="Create Account"
-                  onClick={handleClick}
-                >
-                  Create Account
-                </Button>
-                <Button
-                  variant="primary"
-                  className="denied-btn-2"
-                  value="Home"
-                  onClick={handleClick}
-                >
-                  Home
-                </Button>
-              </footer>
-            </Card.Body>
-          </Card>
+          <AccessCard
+            bodyTxt="Must create account to access Bank Transactions."
+            handleClick={handleClick}
+          />
 
           <div className="overlay"></div>
         </div>
