@@ -10,13 +10,13 @@ function App() {
       <UserContext.Provider
         value={{
           users: [
-            {
-              name: "SampleUser",
-              email: "email@address.com",
-              password: "password",
-              balance: 0,
-              transactions: [],
-            },
+            // {
+            //   name: "SampleUser",
+            //   email: "email@address.com",
+            //   password: "password",
+            //   balance: 0,
+            //   transactions: [],
+            // },
           ],
         }}
       >
