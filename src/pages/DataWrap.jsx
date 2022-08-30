@@ -11,17 +11,6 @@ export default function DataWrap() {
   const currentUser = ctx.users[ctx.users.length - 1];
   let navigate = useNavigate();
 
-  const modalStyles = {
-    backgroundColor: "white",
-    zIndex: 50,
-    width: "50vw",
-    // height: "40vh",
-    boxShadow: "0 3rem 5rem rgba(0, 0, 0, 0.3)",
-    borderRadius: "18px",
-    padding: "2rem",
-    display: "flex",
-  };
-
   console.log("ctx", ctx);
   console.log("currentUser", currentUser);
 
@@ -59,7 +48,7 @@ export default function DataWrap() {
               <p style={{ fontSize: "1.5em", marginBottom: "1rem" }}>
                 No user detected.
                 <br />
-                Must create account to access Bank transactions.
+                Must create account to access Bank Transactions History.
               </p>
               <footer className="denied-btns">
                 <Button

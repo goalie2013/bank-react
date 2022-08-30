@@ -15,16 +15,16 @@ export default function WithdrawWrap() {
   const currentUser = ctx.users[ctx.users.length - 1];
   let navigate = useNavigate();
 
-  const modalStyles = {
-    backgroundColor: "white",
-    zIndex: 50,
-    width: "50vw",
-    // height: "40vh",
-    boxShadow: "0 3rem 5rem rgba(0, 0, 0, 0.3)",
-    borderRadius: "18px",
-    padding: "2rem",
-    display: "flex",
-  };
+  // const modalStyles = {
+  //   backgroundColor: "white",
+  //   zIndex: 50,
+  //   width: "50vw",
+  //   // height: "40vh",
+  //   boxShadow: "0 3rem 5rem rgba(0, 0, 0, 0.3)",
+  //   borderRadius: "18px",
+  //   padding: "2rem",
+  //   display: "flex",
+  // };
 
   console.log("ctx", ctx);
   console.log("currentUser", currentUser);

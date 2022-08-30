@@ -7,7 +7,9 @@ export default function Footer() {
     <div className="footer">
       <Navbar>
         <Container>
-          <Navbar.Brand href="#home">Brand link</Navbar.Brand>
+          <Navbar.Brand href="#home" style={{ fontSize: "0.85em" }}>
+            © 2022 Bad Bank Inc.
+          </Navbar.Brand>
         </Container>
       </Navbar>
     </div>
